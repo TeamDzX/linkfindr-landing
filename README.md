@@ -1,17 +1,25 @@
 # linkfindr-landing
 
-LinkFindr marketing site, served into the Wix page via jsDelivr CDN (same
-pattern as drawpad-landing).
+LinkFindr marketing site. Served via **GitHub Pages** and embedded in the Wix
+site as an iframe.
 
-**Embed in Wix (iframe):**
+**Live URL:** https://teamdzx.github.io/linkfindr-landing/
+
+**Embed in Wix (iframe / Embed a Site element):**
 
 ```html
 <iframe
-  src="https://cdn.jsdelivr.net/gh/TeamDzX/linkfindr-landing@main/index.html"
+  src="https://teamdzx.github.io/linkfindr-landing/"
   style="width:100%; height:100%; border:0;"
   title="LinkFindr"></iframe>
 ```
 
-Assets are referenced relatively, so everything resolves through the same CDN
-path. Note jsDelivr caches `@main` for ~12h — after pushing changes, purge:
-`https://purge.jsdelivr.net/gh/TeamDzX/linkfindr-landing@main/index.html`
+Why Pages and not jsDelivr for the HTML: jsDelivr's /gh/ endpoint serves HTML
+as `text/plain` + `nosniff`, so browsers refuse to render it. Pages serves
+proper `text/html`, relative asset paths work, and pushes to `main` go live in
+~a minute (no CDN purge dance). Individual images can still be hot-linked via
+jsDelivr if ever needed elsewhere.
+
+Assets live in `assets/` (web-sized JPEGs from real app screenshots +
+ComfyUI-generated backdrop art). Page is fully self-contained: system fonts,
+no external requests.
